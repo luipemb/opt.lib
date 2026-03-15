@@ -1,7 +1,9 @@
- vers = "V1.1ex4"
+ vers = "V1.1ex5"
 array = "array"
 key = "key"
 
+
+errortable = {}
 
 
 
@@ -66,18 +68,20 @@ return v == val
 end
 end
 
+
+
+
 function printtab(t, type, tag)
+local info = debug.getinfo()
+local line = info.linedefined
+
 if t == nil then
-tcolor("red")
-print("Error, table no specified (>t<, type, order)")
-tcolor()
+insert(errortable, line..": Error: table no specified (>t<, type, order)")
 end
 
 if type == nil then
-tcolor("red")
-print("Error, type not specified (t, >type<, order)")
-print("Types: array; key;")
-tcolor()
+insert(errortable, line..": Error: type not specified (t, >type<, order)")
+insert(errortable, line..": Types: array; key;")
 end
 
 if type == "array" then
