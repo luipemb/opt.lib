@@ -1,12 +1,15 @@
 
 
 function tcolor(c)
-    term.setTextColor(colors.c)
+    local color = colors[c] or c
+    term.setTextColor(color)
 end
 
 function bcolor(c)
-    term.setBackgroundColor(colors.c)
+    local color = colors[c] or c
+    term.setBackgroundColor(color)
 end
+
 
 function clear()
   term.clear()
