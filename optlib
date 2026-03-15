@@ -1,4 +1,4 @@
- vers = "V1.1ex20"
+ vers = "V1.1ex21"
 array = "array"
 key = "key"
 
@@ -114,31 +114,34 @@ end
 
 
 
--- 1. Guardamos a função original do shell para não quebrar o PC
-local originalRun = shell.run
+-- Tentamos pegar o shell do ambiente global ou do ambiente atual
+local sh = _G.shell or shell
 
--- 2. Criamos a nossa versão "tunada" do shell.run
-shell.run = function(...)
-    -- Roda o programa original e guarda se deu certo e o erro
-    local result = { originalRun(...) }
-    
-    -- Assim que o programa FECHAR (o "end" final dele), isso aqui roda:
-    if errortable and next(errortable) then
-        tcolor("red")
-        print("\n[!] Resumo de erros do programa:")
-        -- Printa sua tabela de erros
-        for k, v in pairs(errortable) do
-            print(k .. ": " .. v)
-        end
-        tcolor()
+if sh then
+    local originalRun = sh.run
+
+    sh.run = function(...)
+        -- 1. Roda o programa
+        local result = { originalRun(...) }
         
-        -- Limpa para o próximo programa não herdar erros deste
-        errortable = {}
+        -- 2. No final (o "end"), verifica a tabela
+        -- Usamos next() porque você disse que é uma tabela de chaves
+        if _G.errortable and next(_G.errortable) then
+            tcolor("red")
+            print("\n[!] Erros acumulados na execucao:")
+            
+            -- Usa sua printtab para mostrar os erros
+            printtab(_G.errortable, "key", true)
+            
+            tcolor()
+            _G.errortable = {} -- Limpa para a próxima rodada
+        end
+        
+        return unpack(result)
     end
-    
-    -- Devolve o resultado original (importante para o sistema)
-    return unpack(result)
+else
+    -- Se mesmo assim for nil, avisamos no console
+    print("Aviso: Nao foi possivel 'hackear' o shell.run")
 end
-
 
 
