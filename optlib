@@ -41,18 +41,3 @@ end
 
 ------------------------------------------------ Tables
 
-function insert(tab, v)
-table.insert(tab, v) 
-end
-
-function remove(tab, v)
-table.remove(tab, v)
-end
-
-function concat(tab, plus)
-if plus == nil then
-table.concat(tab)
-else
-table.concat(tab, plus)
-end
-end
