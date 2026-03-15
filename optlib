@@ -1,4 +1,4 @@
- vers = "V1.1ex5"
+ vers = "V1.1ex6"
 array = "array"
 key = "key"
 
@@ -72,7 +72,7 @@ end
 
 
 function printtab(t, type, tag)
-local info = debug.getinfo()
+local info = debug.getinfo(1)
 local line = info.linedefined
 
 if t == nil then
