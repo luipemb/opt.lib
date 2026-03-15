@@ -36,11 +36,5 @@ function reset()
 end
 
 
-function tablex(t, act, value)
-if act == "insert" then
-table.insert(t, value)
-elseif act == "remove" then
-table.remove(t, value)
-end
-end
+
 
