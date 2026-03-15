@@ -1,4 +1,4 @@
- vers = "V1.1ex13"
+ vers = "V1.1ex14"
 array = "array"
 key = "key"
 
@@ -107,13 +107,11 @@ end
 end
 
 
-while true do
-reset()
 tcolor("red")
 printtab(errortable, key)
 tcolor()
 sleep(0.1)
-end
+
 
 
 
