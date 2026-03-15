@@ -74,6 +74,8 @@ for i, v in ipairs(t) do
     else
     print(v)
     end
+end
+end
 
 if type == "key" then
 for k, v in pairs(t) do
@@ -82,6 +84,8 @@ for k, v in pairs(t) do
     else
     print(v)
     end
+end
+end
 
 end
   
