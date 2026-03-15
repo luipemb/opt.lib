@@ -1,4 +1,4 @@
- vers = "V1.1ex23"
+ vers = "V1.1ex24"
 array = "array"
 key = "key"
 
@@ -6,7 +6,7 @@ key = "key"
 errortable = {}
 -----------------------
 
-function start()
+function error()
 printtab(errortable, key)
 end
 
@@ -114,47 +114,5 @@ end
 
 
 
-
--- 1. Garante que a tabela de erros seja global
-_G.errortable = _G.errortable or {}
-
-function printtab(t, type, tag)
-    -- Pegamos a linha de quem chamou (Nível 2)
-    local info = debug.getinfo(2, "Sl")
-    local line = info and info.currentline or "?"
-    
-    -- Função interna para registrar e já mostrar o erro
-    local function report(msg)
-        local erroFormatado = "L" .. line .. ": " .. msg
-        _G.errortable[line .. "_" .. os.time()] = erroFormatado
-        
-        -- O SEGREDO: Printa na hora em que o erro acontece
-        tcolor("red")
-        print("\n[!] ERRO: " .. erroFormatado)
-        tcolor() -- Volta para branco
-    end
-
-    -- Verificações de segurança
-    if t == nil then
-        report("Table not specified")
-        return 
-    end
-
-    if type == nil then
-        report("Type (array/key) not specified")
-        return
-    end
-
-    -- Se não houver erro, roda o print normal da tabela
-    if type == "array" then
-        for i, v in ipairs(t) do
-            if tag then print(i..". "..v) else print(v) end
-        end
-    elseif type == "key" then
-        for k, v in pairs(t) do
-            if tag then print(k..": "..v) else print(v) end
-        end
-    end
-end
 
 
