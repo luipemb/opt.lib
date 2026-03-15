@@ -1,9 +1,9 @@
- vers = "V1.1ex10"
+ vers = "V1.1ex11"
 array = "array"
 key = "key"
 
 ----------------------
-errortable = {"test"}
+errortable = {}
 -----------------------
 
 
@@ -107,10 +107,12 @@ end
 end
 
 
-
+while true do
+reset()
 tcolor("red")
 printtab(errortable, key)
 tcolor()
+end
 
 
 
