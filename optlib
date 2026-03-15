@@ -1,4 +1,4 @@
- vers = "V1.1ex24"
+ vers = "V1.1ex25"
 array = "array"
 key = "key"
 
@@ -6,7 +6,7 @@ key = "key"
 errortable = {}
 -----------------------
 
-function error()
+function printerror()
 printtab(errortable, key)
 end
 
