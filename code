@@ -1,11 +1,17 @@
 
 
 function tcolor(c)
+if c == nil then
+    term.setTextColor(colors.white)
+else
     local color = colors[c] or c
     term.setTextColor(color)
 end
 
 function bcolor(c)
+if c == nil then
+    term.setBackgroundColor(colors.white)
+else
     local color = colors[c] or c
     term.setBackgroundColor(color)
 end
@@ -28,3 +34,13 @@ function reset()
     term.clear()
     term.setCursorPos(1,1)
 end
+
+
+function table(t, act, value)
+if act == "insert" then
+table.insert(t, value)
+elseif act == "remove" then
+table.remove(t, value)
+end
+end
+
