@@ -1,4 +1,4 @@
- vers = "V1.1ex17"
+ vers = "V1.1ex18"
 array = "array"
 key = "key"
 
@@ -107,7 +107,8 @@ end
 end
 
 
-
+sleep(0.5)
+printtab(errortable, key)
 
 
 
