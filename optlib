@@ -4,10 +4,6 @@ key = "key"
 
 ----------------------
 errortable = {}
-
-tcolor("red")
-printtab(errortable, key)
-tcolor()
 -----------------------
 
 
@@ -109,7 +105,13 @@ end
 end
 
 end
-  
+
+
+
+tcolor("red")
+printtab(errortable, key)
+tcolor()
+
 
 
 
