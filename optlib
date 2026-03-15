@@ -114,6 +114,7 @@ end
 
 
 
+
 -- 1. Tentativa máxima de achar o shell
 local sh = _G.shell or (term and shell) 
 
