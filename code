@@ -40,5 +40,12 @@ function reset()
 end
 
 
+function table(t, v, act)
+if act == "insert" then
+return table.insert(t, v)
 
+elseif act == "remove" then
+return table.remove(t, v)
+end
+end
 
