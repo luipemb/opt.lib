@@ -1,4 +1,4 @@
- vers = "V1.1ex39"
+ vers = "V1.1ex40"
 array = "array"
 key = "key"
 
@@ -120,10 +120,6 @@ end
 end
 
 
-while true do
-sleep(1)
-end
-
 
 end
 print("loading errortableprint()")
@@ -132,11 +128,12 @@ function errortableprint()
 
 print("start")
 while true do 
-print("hi1")
+print("hi")
 
 if #errortable>0 then
 print("hi2")
 printtab(errortable, array)
+printerror()
 end
 sleep(0.2)
 end
