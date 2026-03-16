@@ -1,4 +1,4 @@
- vers = "V1.1ex38"
+ vers = "V1.1ex39"
 array = "array"
 key = "key"
 
@@ -134,9 +134,9 @@ print("start")
 while true do 
 print("hi")
 
-for i, v in ipairs(errortable) do
+
 print("hi2")
-print(v)
+printtab(errortable, array)
 end
 sleep(0.2)
 end
