@@ -1,4 +1,4 @@
- vers = "V1.1ex43"
+ vers = "V1.1ex44"
 array = "array"
 key = "key"
 
@@ -79,7 +79,7 @@ end
 
 
 
-function printtab(t, type, tag)
+function printtab(t, ttype, tag)
 local info = debug.getinfo(2, "Sl")
 local line = info.currentline
 
@@ -87,7 +87,7 @@ if t == nil then
 insert(errortable, line..": Error -- table not specified (>T<, type, order)")
 end
 
-if type == nil then
+if ttype == nil then
 insert(errortable, line..": Error -- type not specified (t, >TYPE<, order)")
 insert(errortable, ": Types -- array / key")
 end
@@ -96,7 +96,7 @@ if type(order) == "string" then
 insert(errortable, line..": Error -- expected boolean (t, type, >ORDER<)")
 end
 
-if type == "array" then
+if ttype == "array" then
 for i, v in ipairs(t) do
   if tag then
     print(i..". "..v)
@@ -106,7 +106,7 @@ for i, v in ipairs(t) do
 end
 end
 
-if type == "key" then
+if ttype == "key" then
 for k, v in pairs(t) do
   if tag then
     print(k..": "..v)
