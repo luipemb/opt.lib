@@ -1,4 +1,4 @@
- vers = "V1.1ex44"
+ vers = "V1.1ex45"
 array = "array"
 key = "key"
 
@@ -89,7 +89,7 @@ end
 
 if ttype == nil then
 insert(errortable, line..": Error -- type not specified (t, >TYPE<, order)")
-insert(errortable, ": Types -- array / key")
+insert(errortable, "Types -- array / key")
 end
 
 if type(order) == "string" then
