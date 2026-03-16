@@ -1,4 +1,4 @@
- vers = "V1.1ex36"
+ vers = "V1.1ex37"
 array = "array"
 key = "key"
 
@@ -6,6 +6,8 @@ key = "key"
 errortable = {}
 -----------------------
 
+
+print("loading main()")
 function main()
 
 
@@ -120,6 +122,7 @@ end
 
 
 end
+print("loading errortableprint()")
 
 function errortableprint()
 
@@ -136,8 +139,9 @@ end
 
 end
 
-
+print("executing parallel")
 parallel.waitForAny(main, errortableprint)
+print("executed parallel")
 
 
 
