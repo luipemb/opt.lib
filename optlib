@@ -1,10 +1,13 @@
- vers = "V1.1ex28"
+ vers = "V1.1ex29"
 array = "array"
 key = "key"
 
 ----------------------
 errortable = {}
 -----------------------
+
+function main()
+
 
 function printerror()
 reset()
@@ -114,6 +117,22 @@ end
 end
 
 end
+end
+
+function errortableprint()
+
+while true do 
+for i, v in ipairs(errortable) do
+ reset()
+ print(v)
+ end
+sleep(0.2)
+end
+
+end
+
+
+parallel.waitForAny(main, errortableprint)
 
 
 
