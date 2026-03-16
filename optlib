@@ -126,7 +126,6 @@ while true do
 for i, v in ipairs(errortable) do
 print(v)
 end
-end
 sleep(0.2)
 end
 
