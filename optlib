@@ -67,7 +67,7 @@ term.write(msg)
 tcolor()
 end
 --========================================================================================================
-function cprint(msg, colors.c)
+function cprint(msg, c)
 tcolor(c)
 print(msg)
 tcolor()
