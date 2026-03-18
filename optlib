@@ -1,6 +1,4 @@
- vers = "V1.2ex1"
-local info = debug.getinfo(2, "Sl")
-local line = info.currentline
+ vers = "V1.2ex2"
 ------------------------
 array = "array"
 key = "key"
@@ -132,6 +130,8 @@ end
 
 
 function printtab(t, ttype, tag)
+local info = debug.getinfo(2, "Sl")
+local line = info.currentline
 
 if t == nil then
 insert(errortable, line..": Error -- table not specified (>T<, type, order)")
