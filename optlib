@@ -1,4 +1,4 @@
- vers = "V1.2ex7"
+ vers = "V1.2ex8"
 ------------------------
 array = "array"
 key = "key"
@@ -59,7 +59,16 @@ function reset()
     term.clear()
     term.setCursorPos(1,1)
 end
-
+--========================================================================================================
+function awrite(msg)
+term.write(msg)
+end
+--========================================================================================================
+function cprint(msg, c)
+tcolor(c)
+print(msg)
+tcolor()
+end
 
 
 
