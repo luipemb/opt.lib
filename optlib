@@ -1,4 +1,4 @@
- vers = "V1.2ex3"
+ vers = "V1.2ex4"
 ------------------------
 array = "array"
 key = "key"
@@ -58,6 +58,30 @@ end
 function reset()
     term.clear()
     term.setCursorPos(1,1)
+end
+
+--========================================================================================================
+function cprint(msg, c)
+tcolor(c)
+print(msg)
+tcolor()
+end
+--========================================================================================================
+function write(msg)
+term.write(msg)
+end
+--========================================================================================================
+function cwrite(msg, c)
+if c == nil then
+ table.insert(errortable, line..": Error --- color not specified (msg, >C<)")
+end
+if msg == nil then
+ table.insert(errortable, line..": Error --- message not specified (>MSG<, c)")
+end
+tcolor(c)
+term.write(msg)
+tcolor()
+
 end
 
 
