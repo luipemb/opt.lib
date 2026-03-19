@@ -1,5 +1,5 @@
-libraryID = "optlib"
-vers = "V1.2ex16"
+library = "optlib"
+vers = "V1.2ex17"
 ------------------------
 array = "array"
 key = "key"
