@@ -1,11 +1,11 @@
 id = "optlib"
-vers = "V1.2ex13"
+vers = "V1.2ex14"
 ------------------------
 array = "array"
 key = "key"
 
-up = "up"
-down = "down"
+top = "top"
+bottom = "bottom"
 left = "left"
 right = "right"
 back = "back"
