@@ -1,5 +1,5 @@
 library = "optlib"
-vers = "V1.2ex17"
+vers = "V1.2ex18"
 ------------------------
 array = "array"
 key = "key"
@@ -77,8 +77,10 @@ function pwrap(side)
 return peripheral.wrap(side)
 end
 --========================================================================================================
-
-
+function redinput(side)
+return redstone.getInput(side)
+end
+--========================================================================================================
 
 
 
