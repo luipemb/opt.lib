@@ -15,7 +15,7 @@ jobs:
       - name: Check version and Sync
         run: |
           # 1. Extrai a versão do arquivo original (ajuste o nome do arquivo abaixo)
-          VERSION=$(grep -oP 'vers\s*=\s*"\K[^"]+' optlib.lua)
+          VERSION=$(grep -oP 'vers\s*=\s*"\K[^"]+' optlib)
           
           echo "Versao detectada: $VERSION"
 
