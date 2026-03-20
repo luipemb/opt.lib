@@ -3,7 +3,7 @@ name: Sync Stable Version
 on:
   push:
     branches:
-      - main  # Ou o nome da sua branch principal
+      - main  
 
 jobs:
   sync:
@@ -14,17 +14,17 @@ jobs:
 
       - name: Check version and Sync
         run: |
-          # 1. Extrai a versão do arquivo original (ajuste o nome do arquivo abaixo)
+          
           VERSION=$(grep -oP 'vers\s*=\s*"\K[^"]+' optlib)
           
-          echo "Versao detectada: $VERSION"
+          echo "Version detected: $VERSION"
 
-          # 2. Verifica se NÃO contém "ex"
+          
           if [[ ! "$VERSION" =~ "ex" ]]; then
-            echo "Versao estavel detectada. Sincronizando..."
+            echo "Stable version! Syncing"
             cp optlib optlibS
             
-            # 3. Configura o robô para commitar a mudança
+            
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git add optlibS
