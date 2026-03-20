@@ -1,5 +1,5 @@
 library = "optlib"
-vers = "V1.2ex18"
+vers = "V1.2ex19"
 ------------------------
 array = "array"
 key = "key"
@@ -81,7 +81,9 @@ function redinput(side)
 return redstone.getInput(side)
 end
 --========================================================================================================
-
+function redoutput(side)
+return redstone.setOutput(side)
+end
 
 
 ------------------------------------------------ Tables
