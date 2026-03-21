@@ -1,5 +1,5 @@
 library = "optlib"
-vers = "V1.2ex3"
+vers = "V1.2ex4"
 ------------------------
 array = "array"
 key = "key"
@@ -107,6 +107,7 @@ if os.clock() - lastping > 0.5 then
  end
 end
 sleep(0.5)
+end
 end
 
 
