@@ -1,7 +1,7 @@
 
 
 
-_G.importhelp = function()
+_G.rootcmds = function()
 print("")
 term.setTextColor(colors.yellow)
 print("=============================================")
