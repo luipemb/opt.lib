@@ -38,7 +38,7 @@ jobs:
             fi
 
             if [[ ! "$VERSION" =~ "ex" ]]; then
-              STABLE_NAME="${file%.lua}S"
+              STABLE_NAME="${file%}S"
               
               echo "  -> [OK] Stable version $VERSION detected. Syncing to $STABLE_NAME"
               cp "$file" "$STABLE_NAME"
