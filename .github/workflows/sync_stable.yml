@@ -22,7 +22,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          for file in $(ls *.lua | grep -v "S.lua"); do
+          # Procura apenas arquivos que terminam em .lua
+          for file in *.lua; do
+            # Pula se o arquivo não existir (evita erro de glob vazio)
+            [ -e "$file" ] || continue
+            
             echo "Analyzing: $file"
             
             if ! luac -p "$file"; then
@@ -38,7 +42,9 @@ jobs:
             fi
 
             if [[ ! "$VERSION" =~ "ex" ]]; then
-              STABLE_NAME="${file%}S"
+              # REMOVE o .lua e ADICIONA o S no final
+              # Exemplo: optlib.lua -> optlibS
+              STABLE_NAME="${file%.lua}S"
               
               echo "  -> [OK] Stable version $VERSION detected. Syncing to $STABLE_NAME"
               cp "$file" "$STABLE_NAME"
