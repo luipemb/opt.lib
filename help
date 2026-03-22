@@ -1,0 +1,30 @@
+
+
+
+_G.importhelp = function()
+print("")
+term.setTextColor(colors.yellow)
+print("=============================================")
+print("You are using CC:Library datapack!")
+print("Commands:")
+print(" ")
+term.setTextColor(colors.green)
+term.write(" > import(")
+term.setTextColor(colors.blue)
+term.write("[lib]")
+term.setTextColor(colors.green)
+term.write(") --- import a library.")
+print("")
+term.write(" > libraries() --- See every library.")
+print("")
+term.write(" > reimport() --- Reimport loaded libraries.")
+term.setTextColor(colors.yellow)
+print("=============================================")
+print("")
+term.setTextColor(colors.white)
+
+end
+
+
+
+  
