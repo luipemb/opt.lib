@@ -13,50 +13,68 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install Lua
         run: sudo apt-get install -y lua5.1
 
       - name: Sync Stable Versions
         run: |
+          # Configurações de Identidade
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Procura apenas arquivos que terminam em .lua
+          # Garante que estamos na main atualizada
+          git checkout main
+
+          # Loop por todos os arquivos .lua
           for file in *.lua; do
-            # Pula se o arquivo não existir (evita erro de glob vazio)
             [ -e "$file" ] || continue
             
-            echo "Analyzing: $file"
+            # Pula arquivos que já terminam com S.lua se existirem (evita recursão)
+            if [[ "$file" == *S.lua ]]; then continue; fi
+
+            echo "Analisando arquivo: $file"
             
+            # Verifica erro de sintaxe
             if ! luac -p "$file"; then
-              echo "  -> [ERROR] Syntax error in $file. Skipping..."
+              echo "  -> [ERRO] Erro de sintaxe em $file. Pulando..."
               continue
             fi
 
-            VERSION=$(grep -oP 'vers\s*=\s*"\K[^"]+' "$file" || true)
+            # Extrai a versão (ex: 1.3) limpando espaços
+            VERSION=$(grep -oP 'vers\s*=\s*"\K[^"]+' "$file" | tr -d ' ' || true)
             
             if [ -z "$VERSION" ]; then
-              echo "  -> [SKIPPED] Variable 'vers' not found."
+              echo "  -> [PULADO] Variável 'vers' não encontrada."
               continue
             fi
 
+            echo "  -> Versão encontrada: '$VERSION'"
+
+            # Se NÃO contém "ex", é estável
             if [[ ! "$VERSION" =~ "ex" ]]; then
-              # REMOVE o .lua e ADICIONA o S no final
-              # Exemplo: optlib.lua -> optlibS
+              # Define o nome de destino: remove .lua e adiciona S (ex: optlibS)
               STABLE_NAME="${file%.lua}S"
               
-              echo "  -> [OK] Stable version $VERSION detected. Syncing to $STABLE_NAME"
-              cp "$file" "$STABLE_NAME"
+              echo "  -> [STABLE] Sincronizando $file para $STABLE_NAME"
+              
+              # Força a cópia/sobrescrita
+              cp -f "$file" "$STABLE_NAME"
+              
+              # Adiciona ao index do Git
               git add "$STABLE_NAME"
             else
-              echo "  -> [EXP] Experimental version $VERSION detected."
+              echo "  -> [BETA] Versão experimental detectada. Nada a fazer."
             fi
           done
 
+          # Verifica se houve mudanças reais antes de commitar
           if ! git diff --cached --quiet; then
-            git commit -m "Auto-sync stable versions"
-            git push
+            echo "Mudanças detectadas. Realizando push..."
+            git commit -m "Auto-sync: Atualizando arquivos estáveis para versão $VERSION"
+            git push origin main
           else
-            echo "No stable changes to update."
+            echo "Nenhuma alteração pendente (optlibS já está igual ao optlib.lua)."
           fi
