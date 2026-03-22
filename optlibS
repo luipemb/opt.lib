@@ -1,5 +1,6 @@
+
 library = "optlib"
-vers = "V1.2"
+vers = "V1.3"
 ------------------------
 array = "array"
 key = "key"
@@ -11,6 +12,7 @@ right = "right"
 back = "back"
 front = "front"
 
+local lastping = os.clock()
 ----------------------
 errortable = {}
 -----------------------
@@ -81,9 +83,68 @@ function redinput(side)
 return redstone.getInput(side)
 end
 --========================================================================================================
-function redoutput(side)
-return redstone.setOutput(side)
+function redoutput(side, b)
+redstone.setOutput(side, b)
 end
+--========================================================================================================
+function ping(actON, actOFF)
+local f1 = load(actON)
+local f2 = load(actOFF)
+while true do
+
+sender, data = rednet.receive(1)
+if sender then
+ if actON == nil then
+ return true
+ else
+ reset()
+ f1()
+ end
+lastping = os.clock()
+end
+
+if os.clock() - lastping > 0.5 then
+ if actOFF ~= nil then
+ reset()
+ f2()
+ end
+end
+sleep(0.5)
+end
+end
+--========================================================================================================
+function pressed(k)
+ while true do
+  local event, key, is_held = os.pullEvent("key")
+  local keyname = keys.getName(key)
+
+  if keyname == k then 
+   return true
+   end
+  end
+end
+--========================================================================================================
+function constant(time, cmd)
+    local c = load(cmd)
+    local running = true
+
+    while running do
+        c()
+       
+        local t = os.startTimer(time)
+        while true do
+            local event, p1 = os.pullEvent()
+            if event == "timer" and p1 == t then 
+                break 
+            elseif event == "key" and keys.getName(p1) == "leftCtrl" then
+                running = false 
+                break
+            end
+        end
+    end
+end
+
+
 
 
 ------------------------------------------------ Tables
@@ -153,7 +214,28 @@ end
 
 
 
-
+helpcommands = {
+"> printerror() --- prints any detected error.",
+"> tcolor(c) --- sets text color.",
+"> bcolor(c) --- sets background color.",
+"> clear() --- clears everything.",
+"> cursorpos(x, y) --- set the cursor position.", 
+"> reset() --- executes clear() and cursorpos(1, 1).",
+"> cwrite(txt, c) --- writes a text with color.",
+"> cprint(txt, c) --- prints a text with color.",
+"> pwrap(side) --- wraps a peripheral.",
+"> redinput(side) --- returns a redstone input.",
+"> redoutput(side, b) --- executes redstone.setOutput.",
+"> ping(actOFF, actON) --- reacts to a received value (rednet.receive()) and executes commands if any sort of information is being or not received.",
+"> pressed(k) --- returns true if a key is pressed.",
+"> constant(time, cmd) --- constantly executes a command after x time is passed.",
+"",
+"> insert(tab, v) --- inserts a value into a table.",
+"> remove(tab, v) --- removes a value of a table.",
+"> concat(tab, plus) --- concatenates a table. Can have a complement to the command.",
+"> checkintab(tab, v) --- returns true if a value exists inside a table.",
+"> printtab(t, ttype, tag) --- prints tables according to their type (array or key) with or not the value's position in the table (tag)"
+}
 
 
 
