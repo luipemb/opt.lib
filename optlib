@@ -1,6 +1,6 @@
 
 library = "optlib"
-vers = "V1.2ex13"
+vers = "V1.2ex14"
 ------------------------
 array = "array"
 key = "key"
@@ -232,7 +232,7 @@ helpcommands = {
 "",
 "> insert(tab, v) --- inserts a value into a table.",
 "> remove(tab, v) --- removes a value of a table.",
-"> concat(tab, plus) --- concatenates a table. Can have a complement to the command (like '\n').",
+"> concat(tab, plus) --- concatenates a table. Can have a complement to the command (like \n).",
 "> checkintab(tab, v) --- returns true if a value exists inside a table.",
 "> printtab(t, ttype, tag) --- prints tables according to their type (array or key) with or not the value's position in the table (tag)"
 }
